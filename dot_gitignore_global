@@ -1,0 +1,33 @@
+# Purpose: Ignore OS/editor/build cruft globally on this machine.
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Editors/IDEs
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.iml
+
+# Node/JS
+node_modules/
+dist/
+build/
+coverage/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+
+# Logs & misc
+*.log
+Thumbs.db
+

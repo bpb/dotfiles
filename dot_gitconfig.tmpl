@@ -1,0 +1,39 @@
+
+# Purpose: Git defaults that are portable and safe to commit.
+
+[init]
+    defaultBranch = main
+
+[core]
+    editor = nvim
+    autocrlf = input
+
+[pull]
+    rebase = false
+
+[fetch]
+    prune = true
+
+[merge]
+    ff = only
+
+[diff]
+    tool = nvimdiff
+
+# Prefer SSH for GitHub (avoids credential prompts; better for dotfiles)
+[url "ssh://git@github.com/"]
+    insteadOf = https://github.com/
+
+# Handy aliases (safe, non-personal)
+[alias]
+    st = status -sb
+    ci = commit
+    co = checkout
+    br = branch
+    lg = log --graph --decorate --oneline --all
+    d  = !lazygit
+
+# Per-machine overrides (untracked, local only)
+[include]
+    path = ~/.gitconfig.local
+

@@ -1,0 +1,11 @@
+# DOT FILES
+
+```shell
+# Purpose: Make rtx behavior consistent across machines.
+
+# Enable certain features; adjust as you like.
+experimental = true
+
+# How frequently rtx checks for plugin updates (human-friendly duration).
+plugin_autoupdate_last_check_duration = "7 days"
+```

@@ -1,0 +1,13 @@
+# Purpose: Exclude files from being applied on certain platforms or during adoption.
+
+# Example: Ghostty is macOS-only; ignore on non-darwin hosts.
+{{- if ne .chezmoi.os "darwin" -}}
+dot_config/ghostty/**
+{{- end -}}
+
+# Adoption helper: uncomment lines below to temporarily prevent chezmoi from overwriting
+# your existing configs until you merge them. Remove once you’re ready.
+# dot_zshrc
+# dot_gitconfig
+# dot_config/ghostty/config
+
