@@ -14,5 +14,5 @@ Clone this repo and let chezmoi manage it:
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
 
 # 2. Clone this repo into chezmoi's source directory
-chezmoi init --apply bpb/dotfiles
+chezmoi init --apply bpb/dot_files
 ```
