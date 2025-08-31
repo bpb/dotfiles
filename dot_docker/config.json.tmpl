@@ -1,6 +1,9 @@
 {
   "cliPluginsExtraDirs": [
-    "{{ (output "brew" "--prefix") }}/lib/docker/cli-plugins",
+    "{{ (output "brew" "--prefix" | trim) }}/lib/docker/cli-plugins",
     "{{ .chezmoi.homeDir }}/.docker/cli-plugins"
-  ]
+  ],
+  "credsStore": "osxkeychain",
+  "detachKeys": "ctrl-@,ctrl-@",
+  "plugins": {}
 }

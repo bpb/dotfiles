@@ -1,6 +1,6 @@
 # Purpose: Neon, slightly transparent macOS look. Has a local include for per-host tweaks.
-# theme=RetroLegends
-theme=CGA
+theme=RetroLegends
+# theme=CGA
 # theme=Blue Matrix
 # Font (choose one; SF Mono Nerd Font gives native look with icons)
 # font-family = FiraCode Nerd Font
