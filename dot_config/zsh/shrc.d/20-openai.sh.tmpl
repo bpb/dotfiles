@@ -1,0 +1,6 @@
+# Export OPENAI_API_KEY from macOS Keychain (no prompt)
+{{ if .profile.dev -}}
+if command -v security >/dev/null 2>&1; then
+  export OPENAI_API_KEY="$(security find-generic-password -a "${USER}" -s "openai_api_key" -w 2>/dev/null || true)"
+fi
+{{- end }}

@@ -125,6 +125,15 @@ alias old_ls='command ls'                                             # real BSD
 command -v lazygit    >/dev/null 2>&1 && alias lg='lazygit'
 command -v lazydocker >/dev/null 2>&1 && alias lzd='lazydocker'
 
+
+# ---- Load custom shrc.d snippets -----------------------------
+# This lets chezmoi-managed files in ~/.config/zsh/shrc.d run automatically.
+# Files are executed in lexical order (10-foo.sh, 20-bar.sh, etc.)
+if [ -d "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/shrc.d" ]; then
+  for file in "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/shrc.d"/*.sh; do
+    [ -r "$file" ] && source "$file"
+  done
+fi
 # ---- (Optional) GPG pinentry on macOS -------------------------------
 # If you brewed pinentry-mac, uncomment to use a GUI prompt:
 # if command -v pinentry-mac >/dev/null 2>&1; then
