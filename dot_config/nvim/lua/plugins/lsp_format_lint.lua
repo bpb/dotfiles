@@ -35,6 +35,6 @@ return {
     end,
   },
 
-  -- Extra JSON/YAML schemas (K8s, Docker Compose, etc.)
-  { "b0o/schemastore.nvim", ft = { "json", "yaml", "yml" } },
+  -- -- Extra JSON/YAML schemas (K8s, Docker Compose, etc.)
+  -- { "b0o/schemastore.nvim", ft = { "json", "yaml", "yml" } },
 }

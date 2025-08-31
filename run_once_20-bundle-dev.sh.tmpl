@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+{{- if .profile.dev }}
+eval "$($(command -v brew) shellenv)"
+brew bundle --file="$HOME/.Brewfiles/Brewfile.dev"
+{{- end }}

@@ -1,0 +1,29 @@
+# ========== Dev essentials ==========
+brew "lazygit"           # TUI git helper
+brew "lazydocker"        # TUI Docker CLI GUI
+brew "neovim"            # full-featured editor (configs in dev layer)
+
+# ========== Container runtime (Colima-based) ==========
+brew "colima"            # macOS local VM runtime (vz/qemu backend)
+brew "docker"            # Docker CLI (works with Colima context)
+brew "docker-compose"    # Compose v2 plugin for Docker CLI
+
+# NOTE:
+# If you prefer Docker Desktop, replace the three above with:
+# cask "docker"          # GUI app that bundles docker + compose itself
+
+# ========== Build & toolchain helpers ==========
+brew "make"              # Makefiles for builds & tasks
+
+# ========== Runtime/version manager ==========
+brew "mise"              # runtime manager (reads .mise.toml)
+
+# ========== Zsh plugins (developer UX) ==========
+brew "powerlevel10k"           # prompt theme (fast, feature-rich)
+brew "zsh-autosuggestions"     # suggests commands as you type
+brew "zsh-syntax-highlighting" # colorizes typed commands
+brew "zsh-completions"         # extra completion definitions
+brew "zsh-history-substring-search" # cycle through history by substring
+
+# Fonts for glyphs/icons used by Powerlevel10k
+cask "font-meslo-lg-nerd-font"

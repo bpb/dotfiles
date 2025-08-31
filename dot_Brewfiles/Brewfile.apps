@@ -1,0 +1,20 @@
+# =====================================================================
+# Brewfile.apps
+# Workstation / GUI applications
+# - These are "desktop UX" apps: terminals, editors, browsers, utilities.
+# - They don’t belong in Core (command-line only) or Dev (toolchains).
+# - Safe to skip on servers and CI environments.
+# =====================================================================
+
+# ---- Terminals & editors ---------------------------------------------
+cask "ghostty"              # fast, GPU-accelerated terminal (modern choice)
+
+# ---- Browsers --------------------------------------------------------
+cask "vivaldi"              # Chromium-based browser with power-user features
+
+# ---- Productivity & utilities ----------------------------------------
+# cask "raycast"              # Spotlight replacement, app launcher, automation
+
+# ---- Optional niceties -----------------------------------------------
+cask "rectangle"          # Window management (free alternative to Magnet)
+# cask "alfred"             # Alternative to Raycast

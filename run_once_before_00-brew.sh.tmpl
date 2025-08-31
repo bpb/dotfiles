@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Ensure Homebrew is installed before anything else
+if ! command -v brew >/dev/null 2>&1; then
+  if [[ "{{ .chezmoi.os }}" == "darwin" ]]; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv)"
+    # Fix insecure completions dirs (Oh-My-Zsh warning)
+    if command -v compaudit >/dev/null 2>&1; then
+      echo "Fixing insecure zsh completion directories..."
+      compaudit | xargs chmod g-w,o-w || true
+    fi
+  else
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+    test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  fi
+fi
+
+brew update

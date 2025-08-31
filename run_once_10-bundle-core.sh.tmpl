@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Ensure brew env is loaded
+eval "$($(command -v brew) shellenv)"
+
+BREWFILES_DIR="$HOME/.Brewfiles"
+
+# Always apply core
+brew bundle --file="$BREWFILES_DIR/Brewfile.core"
+
+# Apply OS-specific extras
+if [[ "{{ .chezmoi.os }}" == "darwin" && -f "$BREWFILES_DIR/Brewfile.darwin" ]]; then
+  brew bundle --file="$BREWFILES_DIR/Brewfile.darwin"
+fi
+if [[ "{{ .chezmoi.os }}" == "darwin" && -f "$BREWFILES_DIR/Brewfile.linux" ]]; then
+  brew bundle --file="$BREWFILES_DIR/Brewfile.linux"
+fi
+
+# Apply machine overrides
+if [[ -f "$BREWFILES_DIR/Brewfile.local" ]]; then
+  brew bundle --file="$BREWFILES_DIR/Brewfile.local"
+fi

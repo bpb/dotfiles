@@ -1,37 +1,39 @@
 # Purpose: Neon, slightly transparent macOS look. Has a local include for per-host tweaks.
-
+# theme=RetroLegends
+theme=CGA
+# theme=Blue Matrix
 # Font (choose one; SF Mono Nerd Font gives native look with icons)
 # font-family = FiraCode Nerd Font
-font-family = SF Mono Nerd Font
-font-size = 13
+# font-family = SF Mono Nerd Font
+# font-size = 13
 
 # Transparency & background (macOS)
 background-opacity = 0.75
 background-blur-radius = 0
 background = #0a0a0f
 
-# Neon-like palette
-# color0  = #1e1e2e
-# color1  = #ff005f
-# color2  = #00ff9f
-# color3  = #f5f543
-# color4  = #00d7ff
-# color5  = #ff5fff
-# color6  = #5fd7ff
-# color7  = #d0d0d0
-# color8  = #808080
-# color9  = #ff5f87
-# color10 = #5fffaf
-# color11 = #ffff87
-# color12 = #5fd7ff
-# color13 = #ff87ff
-# color14 = #87d7ff
-# color15 = #ffffff
-
-# Cursor & UX
-cursor-color = #00ff9f
-# cursor-blink = true
-# macos-option-as-meta = true
+# # Neon-like palette
+# color0  = #051005
+# color1  = #ff3000
+# color2  = #00ff33
+# color3  = #00dd66
+# color4  = #00aa99
+# color5  = #bb00bb
+# color6  = #00ddaa
+# color7  = #d0ffd0
+# color8  = #336633
+# color9  = #ff5500
+# color10 = #33ff66
+# color11 = #66ff66
+# color12 = #00ffcc
+# color13 = #cc66cc
+# color14 = #33ffaa
+# color15 = #eeffee
+#
+# # Cursor & UX
+# cursor-color = #33ff66
+cursor-blink = true
+keybind = global:cmd+grave_accent=toggle_quick_terminal
 macos-titlebar-style = tabs
 window-padding-x = 8
 window-padding-y = 8

@@ -1,11 +1,18 @@
-# DOT FILES
+# Dotfiles
 
-```shell
-# Purpose: Make rtx behavior consistent across machines.
+Managed with [chezmoi](https://www.chezmoi.io/) + [Homebrew](https://brew.sh/).
+Provides a layered setup: **core tools**, optional **developer toolchain**, and optional **workstation apps**.
 
-# Enable certain features; adjust as you like.
-experimental = true
+---
 
-# How frequently rtx checks for plugin updates (human-friendly duration).
-plugin_autoupdate_last_check_duration = "7 days"
+## 🚀 Initialize on a new machine
+
+Clone this repo and let chezmoi manage it:
+
+```bash
+# 1. Install chezmoi
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
+
+# 2. Clone this repo into chezmoi's source directory
+chezmoi init --apply bpb/dotfiles
 ```

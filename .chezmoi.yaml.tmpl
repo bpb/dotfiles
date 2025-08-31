@@ -1,0 +1,9 @@
+# ~/.local/share/chezmoi/.chezmoi.yaml.tmpl
+data:
+  profile:
+    core: true
+    dev:  {{ promptBoolOnce . "profile.dev"  "Install developer toolchain" false }}
+    apps: {{ promptBoolOnce . "profile.apps" "Install workstation apps"   false }}
+  git:
+    name: {{ promptString "Enter your Git user.name (e.g. Work or Personal full name)" }}
+    email: {{ promptString "Enter your Git user.email (work or personal)" }}

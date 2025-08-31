@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+{{- if .profile.dev }}
+
+LAZY_NVIM_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/nvim/lazy/lazy.nvim"
+
+if [ ! -d "$LAZY_NVIM_DIR" ]; then
+  echo "[bootstrap] Installing lazy.nvim (stable)…" >&2
+  mkdir -p "$(dirname "$LAZY_NVIM_DIR")"
+  git -c advice.detachedHead=false clone \
+    --filter=blob:none \
+    --branch=stable \
+    https://github.com/folke/lazy.nvim.git \
+    "$LAZY_NVIM_DIR"
+fi
+
+{{- end }}

@@ -31,3 +31,4 @@ __pycache__/
 *.log
 Thumbs.db
 
+excludesfile = {{ .chezmoi.homeDir }}/.gitignore_global

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+{{- if .profile.apps }}
+eval "$($(command -v brew) shellenv)"
+
+# No MAS handling needed – just run bundle
+brew bundle --file="$HOME/.Brewfiles/Brewfile.apps"
+{{- end }}

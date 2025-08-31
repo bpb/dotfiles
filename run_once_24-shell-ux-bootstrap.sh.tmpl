@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# =====================================================================
+# Developer UX bootstrap: installs Oh My Zsh (OMZ) into ~/.oh-my-zsh
+# - Only runs when `profile.dev = true` in chezmoi config.
+# - Provides the base framework for Zsh, into which we load Powerlevel10k,
+#   autosuggestions, syntax highlighting, etc.
+# =====================================================================
+
+{{- if .profile.dev }}
+OMZ_DIR="$HOME/.oh-my-zsh"
+INSTALLER="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+# Developer UX bootstrap (OMZ). Runs only when profile.dev = true.
+
+# Guarded init prevents "unbound variable" even with set -u
+: "${OMZ_DIR:=$HOME/.oh-my-zsh}"
+INSTALLER_URL="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+
+# IF: OMZ not installed → install without changing shell or .zshrc
+if [ ! -d "$OMZ_DIR" ]; then
+  echo "[bootstrap] Installing Oh My Zsh into $OMZ_DIR …" >&2
+  RUNZSH=no KEEP_ZSHRC=yes CHSH=no \
+    sh -c "$(curl -fsSL --connect-timeout 10 --max-time 180 "$INSTALLER_URL")"
+else
+  echo "[bootstrap] Updating Oh My Zsh in $OMZ_DIR …" >&2
+  if command -v git >/dev/null 2>&1; then
+    git -C "$OMZ_DIR" fetch --tags --prune --quiet || true
+    git -C "$OMZ_DIR" reset --hard origin/master --quiet || true
+  fi
+fi
+{{- else -}}
+echo "[bootstrap] Skipping Oh My Zsh (profile.dev not enabled)"
+{{- end }}
