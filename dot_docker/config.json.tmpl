@@ -1,9 +1,9 @@
 {
+  "auths": {},
+  "detachKeys": "ctrl-@,ctrl-@",
+  "credsStore": "osxkeychain",
+  "currentContext": "colima",
   "cliPluginsExtraDirs": [
     "{{ (output "brew" "--prefix" | trim) }}/lib/docker/cli-plugins",
-    "{{ .chezmoi.homeDir }}/.docker/cli-plugins"
-  ],
-  "credsStore": "osxkeychain",
-  "detachKeys": "ctrl-@,ctrl-@",
-  "plugins": {}
+    "{{ .chezmoi.homeDir }}/.docker/cli-plugins"  ]
 }

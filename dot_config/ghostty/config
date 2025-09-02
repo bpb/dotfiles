@@ -1,5 +1,5 @@
 # Purpose: Neon, slightly transparent macOS look. Has a local include for per-host tweaks.
-theme=RetroLegends
+theme=TokyoNight
 # theme=CGA
 # theme=Blue Matrix
 # Font (choose one; SF Mono Nerd Font gives native look with icons)
@@ -9,30 +9,10 @@ theme=RetroLegends
 
 # Transparency & background (macOS)
 background-opacity = 0.75
-background-blur-radius = 0
+background-blur-radius = 10
 background = #0a0a0f
 
-# # Neon-like palette
-# color0  = #051005
-# color1  = #ff3000
-# color2  = #00ff33
-# color3  = #00dd66
-# color4  = #00aa99
-# color5  = #bb00bb
-# color6  = #00ddaa
-# color7  = #d0ffd0
-# color8  = #336633
-# color9  = #ff5500
-# color10 = #33ff66
-# color11 = #66ff66
-# color12 = #00ffcc
-# color13 = #cc66cc
-# color14 = #33ffaa
-# color15 = #eeffee
-#
 # # Cursor & UX
-# cursor-color = #33ff66
-cursor-blink = true
 keybind = global:cmd+grave_accent=toggle_quick_terminal
 macos-titlebar-style = tabs
 window-padding-x = 8
