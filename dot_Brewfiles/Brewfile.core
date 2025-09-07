@@ -22,6 +22,8 @@ brew "bat"           # cat with syntax highlighting
 brew "zoxide"        # smarter cd
 brew "direnv"        # per-project envs
 brew "gh"            # GitHub CLI
+brew "neovim"        # full-featured editor (configs in dev layer)
+brew "nnn"           # the file manager
 
 # ========== Trees, Monitors, Re-runs ==========
 brew "tree"          # recursive directory tree printer

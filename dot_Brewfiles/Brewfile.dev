@@ -1,7 +1,6 @@
 # ========== Dev essentials ==========
 brew "lazygit"           # TUI git helper
 brew "lazydocker"        # TUI Docker CLI GUI
-brew "neovim"            # full-featured editor (configs in dev layer)
 
 # ========== Container runtime (Colima-based) ==========
 brew "colima"            # macOS local VM runtime (vz/qemu backend)

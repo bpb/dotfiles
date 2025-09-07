@@ -1,0 +1,24 @@
+# ==== nnn setup (chezmoi managed) =============================
+
+# nnn options
+export NNN_OPTS="-e" # open text files in $EDITOR
+
+# cd-on-quit target file
+export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+# bookmarks (press g then key inside nnn)
+export NNN_BMS="d:~/Downloads;p:~/projects;c:~/.config"
+
+# plugin bindings (optional)
+# export NNN_PLUG="p:preview-tui"
+
+# wrapper: launch nnn and cd to last dir
+n() {
+  mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/nnn"
+  \nnn "$@"
+  if [ -f "$NNN_TMPFILE" ]; then
+    . "$NNN_TMPFILE"
+    rm -f "$NNN_TMPFILE"
+  fi
+}
+# ===============================================================

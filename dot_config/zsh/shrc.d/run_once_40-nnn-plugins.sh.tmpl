@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+if command -v nnn >/dev/null 2>&1; then
+  mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/nnn/plugins"
+  curl -fsSL https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs | sh
+fi
