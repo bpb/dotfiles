@@ -1,24 +1,43 @@
-# ==== nnn setup (chezmoi managed) =============================
+# nnn option flags: letters only (no dashes). 'e' = open in $EDITOR
+export NNN_OPTS="e"
 
-# nnn options
-export NNN_OPTS="-e" # open text files in $EDITOR
-
-# cd-on-quit target file
+# Where nnn writes "cd here" on quit
 export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
 
-# bookmarks (press g then key inside nnn)
-export NNN_BMS="d:~/Downloads;p:~/projects;c:~/.config"
+# Map ;p to preview-tui
+export NNN_PLUG="p:preview-tui"
 
-# plugin bindings (optional)
-# export NNN_PLUG="p:preview-tui"
+# A private per-user runtime dir on macOS (since XDG_RUNTIME_DIR is usually empty)
+export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/tmp/$USER-runtime}"
+mkdir -p "$XDG_RUNTIME_DIR" && chmod 700 "$XDG_RUNTIME_DIR"
 
-# wrapper: launch nnn and cd to last dir
+# --- The key bit: set NNN_FIFO explicitly (as plugin docs require) ------
+# One FIFO per shell session (PID helps avoid clashes if you run multiple shells)
+NNN_FIFO_BASE="$XDG_RUNTIME_DIR/nnn"
+mkdir -p "$NNN_FIFO_BASE"
+export NNN_FIFO="$NNN_FIFO_BASE/nnn.$$.fifo"
+# ------------------------------------------------------------------------
+
+# Wrapper:
+# - If not already in tmux, launch a temporary tmux session that runs `nnn -a`
+#   (so the plugin can split panes). When you quit nnn, that tmux session exits,
+#   we return here, and then we cd-on-quit in your regular shell.
+# - If already in tmux, just run nnn directly.
 n() {
   mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/nnn"
-  \nnn "$@"
+  [ -e "$NNN_FIFO" ] && rm -f "$NNN_FIFO" >/dev/null 2>&1
+
+  if [ -z "${TMUX:-}" ]; then
+    # Run nnn inside a throwaway tmux session
+    tmux new-session -f "${HOME}/.tmux.conf" -s nnn_preview -P -d "zsh -lc 'nnn -a'"
+    tmux attach -t nnn_preview
+  else
+    command nnn -a "$@"
+  fi
+
   if [ -f "$NNN_TMPFILE" ]; then
     . "$NNN_TMPFILE"
-    rm -f "$NNN_TMPFILE"
+    realrm -f "$NNN_TMPFILE" >/dev/null 2>&1
   fi
 }
-# ===============================================================
+# ------------------------------------------------------------------------
