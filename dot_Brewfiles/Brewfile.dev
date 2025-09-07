@@ -6,10 +6,7 @@ brew "lazydocker"        # TUI Docker CLI GUI
 brew "colima"            # macOS local VM runtime (vz/qemu backend)
 brew "docker"            # Docker CLI (works with Colima context)
 brew "docker-compose"    # Compose v2 plugin for Docker CLI
-
-# NOTE:
-# If you prefer Docker Desktop, replace the three above with:
-# cask "docker"          # GUI app that bundles docker + compose itself
+brew "docker-credential-helper"  # Provides docker-credential-osxkeychain for storing Docker creds in macOS Keychain
 
 # ========== Build & toolchain helpers ==========
 brew "make"              # Makefiles for builds & tasks
