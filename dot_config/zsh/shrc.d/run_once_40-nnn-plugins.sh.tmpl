@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Only if nnn is present
+if ! command -v nnn >/dev/null 2>&1; then
+  echo "nnn not installed; skipping plugin install."
+  exit 0
+fi
+
+PLUGDIR="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/plugins"
+mkdir -p "$PLUGDIR"
+
+# Run the official installer *inside* the target dir so paths resolve
+(
+  cd "$PLUGDIR"
+  sh -c "$(curl -Ls https://raw.githubusercontent.com/jarun/nnn/master/plugins/getplugs)"
+)
+
+echo "nnn plugins installed/updated in: $PLUGDIR"

@@ -6,26 +6,9 @@
 # - Prefer GNU utilities for consistent scripting across macOS/Linux.
 # =====================================================================
 
-# ---- Base PATHs: Homebrew & user bin --------------------------------
-# Put Homebrew first (Apple Silicon default prefix) and your local bin.
-[ -d "/opt/homebrew/bin" ] && PATH="/opt/homebrew/bin:$PATH"
-[ -d "$HOME/.local/bin" ]  && PATH="$HOME/.local/bin:$PATH"
-
-# ---- GNU toolchain first (Linux-like behavior on macOS) --------------
-# Adds GNU coreutils/findutils/sed "gnubin" shims to the front of PATH,
-# and their man pages to MANPATH. If not present, macOS BSD tools remain.
-if command -v brew >/dev/null 2>&1; then
-  PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
-  PATH="$(brew --prefix findutils)/libexec/gnubin:$PATH"
-  PATH="$(brew --prefix gnu-sed)/libexec/gnubin:$PATH"
-  export MANPATH="$(brew --prefix coreutils)/libexec/gnuman:$(brew --prefix)/share/man:${MANPATH:-}"
-fi
-export PATH
 
 # ---- Editors ---------------------------------------------------------
 # Make Neovim the default editor and keep quick aliases.
-export EDITOR=nvim
-export VISUAL=nvim
 alias vi='nvim' ; alias vim='nvim'
 alias old_vi='command vi' ; alias old_vim='command vim'  # escape hatches
 

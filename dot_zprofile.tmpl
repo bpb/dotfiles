@@ -1,0 +1,42 @@
+
+
+# --- Homebrew & user bin early (login + non-interactive) --------------------
+# Apple Silicon first; fall back to Intel prefix if present.
+if [ -d "/opt/homebrew/bin" ]; then
+  export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+elif [ -d "/usr/local/bin" ]; then
+  export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+fi
+
+# User bin
+if [ -d "$HOME/.local/bin" ]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# --- GNU toolchain first (guarded for fresh machines) -----------------------
+if command -v brew >/dev/null 2>&1; then
+  # Coreutils / Findutils / GNU sed shims
+  coreutils_prefix="$(brew --prefix coreutils 2>/dev/null || true)"
+  findutils_prefix="$(brew --prefix findutils 2>/dev/null || true)"
+  gnused_prefix="$(brew --prefix gnu-sed   2>/dev/null || true)"
+
+  [ -n "$coreutils_prefix" ] && PATH="$coreutils_prefix/libexec/gnubin:$PATH"
+  [ -n "$findutils_prefix" ] && PATH="$findutils_prefix/libexec/gnubin:$PATH"
+  [ -n "$gnused_prefix"    ] && PATH="$gnused_prefix/libexec/gnubin:$PATH"
+
+  # Manpages (don’t error if empty)
+  brew_prefix="$(brew --prefix 2>/dev/null || true)"
+  if [ -n "$coreutils_prefix" ] || [ -n "$brew_prefix" ]; then
+    export MANPATH="$(
+      [ -n "$coreutils_prefix" ] && printf "%s/libexec/gnuman:" "$coreutils_prefix"
+    )$([ -n "$brew_prefix" ] && printf "%s/share/man" "$brew_prefix")${MANPATH:+:$MANPATH}"
+  fi
+fi
+
+export PATH
+
+# ---- Editors ---------------------------------------------------------
+# Make Neovim the default editor and keep quick aliases.
+export EDITOR=nvim
+export VISUAL=nvim
+

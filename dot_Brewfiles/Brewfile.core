@@ -22,7 +22,13 @@ brew "bat"           # cat with syntax highlighting
 brew "zoxide"        # smarter cd
 brew "direnv"        # per-project envs
 brew "gh"            # GitHub CLI
-
+brew "neovim"        # full-featured editor (configs in dev layer)
+brew "nnn"           # the file manager
+brew "mediainfo"       # media metadata
+brew "poppler"         # pdftoppm for PDF thumbs
+brew "chafa"           # text-mode image preview (no Kitty needed)
+brew "ffmpegthumbnailer"  # better video thumbs
+brew "glow"               # nicer Markdown preview
 # ========== Trees, Monitors, Re-runs ==========
 brew "tree"          # recursive directory tree printer
 brew "watch"         # rerun commands repeatedly (BSD macOS lacks it)
